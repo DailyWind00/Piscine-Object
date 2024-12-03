@@ -1,2 +1,2 @@
 # Piscine-Object
-Object Oriented Programming learning
+C++ Object Oriented Programming learning
