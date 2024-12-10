@@ -11,20 +11,31 @@ typedef pair<size_t, Account> Client;
 
 class Bank {
     private:
-        int     liquidity;
-        Clients clientAccounts;
+        long long   liquidity;
+        Clients     clientAccounts;
 
     public:
         Bank();
+        Bank(long long baseLiquidity);
         ~Bank();
 
+        // Bank informations (Getters)
 
-        // Clients management
-
-        size_t          addClient(size_t value); // Setter
-        void            removeClient(size_t id);
+        long long       getBankLiquidity() const;
         void            displayClients();
         void            displayClient(size_t id);
-        const Account & getClient(size_t id);   // Getter
+        const Account & operator[](size_t id);
+
+
+        // Clients management (Setters)
+
+        size_t          addClient(size_t value);
+        void            removeClient(size_t id);
+
+
+        // Clients interactions
+        void            reserveLoan(size_t id, size_t value);
+        void            repayLoan(size_t id, size_t value);
+        void            transfer(size_t from, size_t to, size_t value);
 
 };

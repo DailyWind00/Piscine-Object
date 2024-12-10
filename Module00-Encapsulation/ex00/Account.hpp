@@ -9,15 +9,17 @@ class Account {
 
     private:
         size_t id;
-        int value;
+        size_t value;
+        size_t debt;
 
-        // Private Constructor
-        Account(size_t id, int value);
+        Account(size_t id, int value); // Constructor is private for encapsulation with Bank
 
     public:
         ~Account();
 
         // Getters
-        size_t getId() const;
-        int getValue() const;
+
+        const size_t & getId() const;
+        const size_t & getValue() const;
+        const size_t & getDebt() const;
 };

@@ -1,9 +1,11 @@
 #include "Account.hpp"
 
 /// Constructor & Destructor
+
 Account::Account(size_t id, int value) {
     this->id = id;
     this->value = value;
+    this->debt = 0;
 }
 
 Account::~Account() {
@@ -13,11 +15,16 @@ Account::~Account() {
 
 
 /// Getters
-size_t Account::getId() const {
+
+const size_t & Account::getId() const {
     return this->id;
 }
 
-int Account::getValue() const {
+const size_t & Account::getValue() const {
     return this->value;
+}
+
+const size_t & Account::getDebt() const {
+    return this->debt;
 }
 /// ---
