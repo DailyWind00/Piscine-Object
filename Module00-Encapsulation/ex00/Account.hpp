@@ -5,17 +5,19 @@
 using namespace std;
 
 class Account {
+    friend class Bank; // Only Bank can set private members
+
     private:
-        int id;
+        size_t id;
         int value;
 
+        // Private Constructor
+        Account(size_t id, int value);
+
     public:
-        Account(int id, int value);
         ~Account();
 
         // Getters
-        int getId() const;
+        size_t getId() const;
         int getValue() const;
 };
-
-ostream& operator<<(ostream& os, Account *account);

@@ -6,8 +6,8 @@
 
 using namespace std;
 
-typedef map<int, Account *> Clients; // Id, Account
-typedef pair<int, Account *> Client;
+typedef map<size_t, Account> Clients; // Id, Account
+typedef pair<size_t, Account> Client;
 
 class Bank {
     private:
@@ -18,10 +18,13 @@ class Bank {
         Bank();
         ~Bank();
 
+
         // Clients management
-        void    addClient(Account &account);
-        void    removeClient(int id);
-        void    displayClients();
-        void    displayClient(int id);
+
+        size_t          addClient(size_t value); // Setter
+        void            removeClient(size_t id);
+        void            displayClients();
+        void            displayClient(size_t id);
+        const Account & getClient(size_t id);   // Getter
 
 };
