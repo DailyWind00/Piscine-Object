@@ -7,9 +7,11 @@ int main(int argc, char** argv) {
     }
 
     try {
-        Graph graph = Graph(argv[1]);
+        Graph graph(argv[1]);
+
+        graph.printOnTerminal();
     }
-    catch(const std::exception& e) {
+    catch(const exception& e) {
         cerr << e.what() << '\n';
     }
 

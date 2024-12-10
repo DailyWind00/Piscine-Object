@@ -16,8 +16,8 @@ int main() {
         bank.displayClient(1);
         bank.displayClient(2); // OOB exception
     }
-    catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
+    catch(const exception& e) {
+        cerr << e.what() << '\n';
     }
 
     // Unique id check
@@ -33,8 +33,8 @@ int main() {
 
         bank[ids[0]]; // OOB exception
     }
-    catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
+    catch(const exception& e) {
+        cerr << e.what() << '\n';
     }
 
     cout << endl;
@@ -54,14 +54,14 @@ int main() {
     try {
         bank.reserveLoan(ids[0], 9999999999); // Not enough liquidity
     }
-    catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
+    catch(const exception& e) {
+        cerr << e.what() << '\n';
     }
     try {
         bank.transfer(ids[0], ids[1], 9999999999); // Not enough value
     }
-    catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
+    catch(const exception& e) {
+        cerr << e.what() << '\n';
     }
 
     return 0;
