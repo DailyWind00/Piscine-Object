@@ -1,5 +1,6 @@
 #include "Graph.hpp"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "stb_image_write.h"
 
 /// Constructor & Destructor
 Graph::Graph(const string &filename) {
@@ -15,7 +16,6 @@ Graph::Graph(const string &filename) {
         replace(line.begin(), line.end(), ',', ' ');
         ss << line;
         ss >> pos.first >> pos.second;
-        // cout << pos.first << " " << pos.second << endl; // To remove
         if (ss.fail())
             throw invalid_argument("Invalid file format");
         if (pos.first < 0 || pos.second < 0 || pos.first >= MAX_SIZE || pos.second >= MAX_SIZE)
@@ -61,7 +61,37 @@ void    Graph::printOnTerminal() const {
     cout << endl;   
 }
 
+// Save in PNG format
 void    Graph::saveAsImage(const string &output) const {
-    (void)output;
+    int width = MAX_SIZE * 4;
+    int height = MAX_SIZE * 4;
+    int channels = 1;
+
+    vector<unsigned char>image(width * height * channels);
+
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            int index = (y * width + x) * channels;
+            Vector2 pos(x / 4, y / 4);
+
+            if (find(points.begin(), points.end(), pos) != points.end())
+                image[index] = 255;
+            else
+                image[index] = 0;
+        }
+    }
+
+    vector<unsigned char>flipped_image(width * height * channels);
+
+    // Flip the rows: copy from bottom to top
+    for (int y = 0; y < height; ++y) {
+        const unsigned char* src_row = &image[(height - 1 - y) * width * channels];
+        unsigned char* dst_row = &flipped_image[y * width * channels];
+        copy(src_row, src_row + width * channels, dst_row);
+    }
+
+    // Save the image as a PNG
+    if (!stbi_write_png(output.c_str(), width, height, channels, flipped_image.data(), width * channels))
+        throw runtime_error("Failed to save the image");
 }
 /// ---

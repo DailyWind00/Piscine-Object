@@ -1,6 +1,5 @@
 #pragma once
 
-# include "stb_image_write.h"
 # include <iostream>
 # include <algorithm>
 # include <fstream>
