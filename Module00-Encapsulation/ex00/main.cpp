@@ -3,7 +3,7 @@
 
 int main() {
     // Account class isn't instantiable outside Bank
-    // Account accountA = Account(0, 100);
+    // Account account(0, 100);
 
     Bank bank = Bank(10000);
     vector<size_t> ids;
@@ -49,8 +49,6 @@ int main() {
     bank.repayLoan(ids[1], 1000); // Round to max debt
     bank.displayClient(ids[1]);
     bank.displayClient(ids[0]);
-
-
     cout << "Bank liquidity: " << bank.getBankLiquidity() << endl;
 
     try {
