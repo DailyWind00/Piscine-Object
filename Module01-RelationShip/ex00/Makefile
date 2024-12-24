@@ -3,7 +3,8 @@ NAME = relationship
 
 SRCS =	main.cpp \
 		Tools.cpp \
-		Worker.cpp #
+		Worker.cpp \
+		Workshop.cpp #
 OBJS = $(SRCS:.cpp=.o)
 
 CC = c++

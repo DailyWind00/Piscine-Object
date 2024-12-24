@@ -45,3 +45,20 @@ class Shovel : public Tool {
         const uint &getNumberOfUses() const;
         const Worker *getCurrentWorker() const;
 };
+
+class Hammer : public Tool {
+    public:
+        Hammer(uint numberOfUses = 0);
+        ~Hammer();
+        
+        /// Public methods
+
+        bool assign(Worker *worker);
+        bool use();
+        bool remove();
+
+        /// Getters
+        const string &getToolName() const;
+        const uint &getNumberOfUses() const;
+        const Worker *getCurrentWorker() const;
+};

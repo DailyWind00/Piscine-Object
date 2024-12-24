@@ -1,35 +1,56 @@
-#include "Worker.hpp"
+#include "Workshop.hpp"
 
 int main() {
-    Worker worker("Brice", (Position){0, 0, 0}, (Statistic){1, 0});
+    Workshop workshop("Child labor workshop");
+    Worker Brice("Brice", (Position){0, 0, 0}, (Statistic){1, 0});
     Shovel shovel(5);
-    Worker worker2("Antoine", (Position){0, 0, 0}, (Statistic){1, 0});
+    Worker Antoine("Antoine", (Position){0, 0, 0}, (Statistic){1, 0});
+    Hammer hammer(2);
+
+    cout << endl << Gray << "Registering workers :" << ResetColor << endl;
+
+    workshop.registerWorker(Brice);
+    workshop.registerWorker(Antoine);
+    workshop.registerWorker(Brice); // Should not register Brice again
 
     cout << endl << Gray << "Equiping tools :" << ResetColor << endl;
 
-    worker.equip(shovel);
-    Shovel *equipedShovel = worker.getTool<Shovel>();
+    Brice.equip(shovel);
+    Brice.equip(hammer);
+    Shovel *equipedShovel = Brice.getTool<Shovel>();
     cout << Gray << "> Shovel have " << equipedShovel->getNumberOfUses() << " uses left" << ResetColor << endl;
+    Hammer *equipedHammer = Brice.getTool<Hammer>();
+    cout << Gray << "> Hammer have " << equipedHammer->getNumberOfUses() << " uses left" << ResetColor << endl;
 
     cout << endl;
 
-    worker2.equip(*equipedShovel); // Should not equip the shovel
-    Shovel *equipedShovel2 = worker2.getTool<Shovel>(); // Should return NULL
+    Antoine.equip(*equipedShovel); // Should not equip the shovel
+    Shovel *equipedShovel2 = Antoine.getTool<Shovel>(); // Should return NULL
     if (equipedShovel2 == NULL)
         cout << Gray << "> Shovel hasn't been equipped" << ResetColor << endl;
     
     cout << endl << Gray << "Working with tools :" << ResetColor << endl;
     
     for (int i = 0; i < 6; i++) {
-        worker.work<Shovel>(); // Should work 5 times and fail the last time
+        Brice.work<Shovel>(); // Should work 5 times and fail the last time
     }
-    worker2.work<Shovel>(); // Should not work
+    cout << endl;
+
+    Antoine.work<Shovel>(); // Should not work
+
+    Antoine.equip(shovel); // Shovel has been removed but not deleted
 
     cout << endl << Gray << "Unequiping tools :" << ResetColor << endl;
 
-    worker.unequip<Shovel>(); // Should unequip the shovel
-    worker.unequip<Shovel>(); // Should not unequip any tool
-    worker2.unequip<Shovel>(); // Should not unequip any tool
+    Antoine.unequip<Shovel>(); // Should unequip the shovel
+    Antoine.unequip<Shovel>(); // Should not unequip any tool
+    Brice.unequip<Shovel>(); // Should not unequip any tool
+
+    cout << endl << Gray << "Unregistering workers :" << ResetColor << endl;
+
+    workshop.unregisterWorker(Brice);
+    workshop.unregisterWorker(Antoine);
+    workshop.unregisterWorker(Brice); // Should not unregister Brice again
 
     cout << endl;
 }
