@@ -32,5 +32,6 @@
 *.app
 bank
 graph
+relationship
 
 .vscode/
