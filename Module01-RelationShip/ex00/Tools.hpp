@@ -4,11 +4,11 @@
 #include "color.h"
 
 #include <iostream>
-#include "Worker.hpp"
 class Worker;
 
-typedef unsigned int uint;
 using namespace std;
+
+typedef unsigned int uint;
 
 class Tool {
     protected:

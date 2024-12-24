@@ -1,4 +1,5 @@
 #include "Tools.hpp"
+#include "Worker.hpp"
 
 //// Shovel
 /// Constructor & Destructor

@@ -20,7 +20,6 @@ $(NAME): $(OBJS)
 
 clean:
 	rm -f $(OBJS)
-	rm -f *.png
 
 fclean: clean
 	rm -f $(NAME)
