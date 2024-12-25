@@ -24,9 +24,9 @@ class Tool {
         virtual bool remove() = 0;
 
         /// Getters
-        virtual const string &getToolName() const = 0;
-        virtual const uint &getNumberOfUses() const = 0;
-        virtual const Worker *getCurrentWorker() const = 0;
+        virtual const string   &getToolName() const = 0;
+        virtual const uint     &getNumberOfUses() const = 0;
+        virtual const Worker   *getCurrentWorker() const = 0;
 };
 
 class Shovel : public Tool {
@@ -41,9 +41,12 @@ class Shovel : public Tool {
         bool remove();
 
         /// Getters
-        const string &getToolName() const;
-        const uint &getNumberOfUses() const;
-        const Worker *getCurrentWorker() const;
+        const string           &getToolName() const;
+        const uint             &getNumberOfUses() const;
+        const Worker           *getCurrentWorker() const;
+        static const string     staticGetToolName() {
+            return Orange + "Shovel" + ResetColor;
+        }
 };
 
 class Hammer : public Tool {
@@ -58,7 +61,10 @@ class Hammer : public Tool {
         bool remove();
 
         /// Getters
-        const string &getToolName() const;
-        const uint &getNumberOfUses() const;
-        const Worker *getCurrentWorker() const;
+        const string           &getToolName() const;
+        const uint             &getNumberOfUses() const;
+        const Worker           *getCurrentWorker() const;
+        static const string     staticGetToolName() {
+            return Orange + "Hammer" + ResetColor;
+        }
 };

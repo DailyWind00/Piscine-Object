@@ -26,7 +26,7 @@ class Worker {
         string          name;
         Position        position;
         Statistic       statistic;
-        vector<Tool *>    tool;
+        vector<Tool *>  tool;
 
     public:
         Worker(const string &name, Position position, Statistic statistic);

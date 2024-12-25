@@ -1,17 +1,13 @@
 #include "Workshop.hpp"
 
+// Do every unit test here
 int main() {
-    Workshop workshop("Child labor workshop");
+    Workshop<Shovel> childLabor("Child labor workshop");
+    Workshop<Hammer> bob("Bob the builder's workshop");
     Worker Brice("Brice", (Position){0, 0, 0}, (Statistic){1, 0});
     Shovel shovel(5);
     Worker Antoine("Antoine", (Position){0, 0, 0}, (Statistic){1, 0});
     Hammer hammer(2);
-
-    cout << endl << Gray << "Registering workers :" << ResetColor << endl;
-
-    workshop.registerWorker(Brice);
-    workshop.registerWorker(Antoine);
-    workshop.registerWorker(Brice); // Should not register Brice again
 
     cout << endl << Gray << "Equiping tools :" << ResetColor << endl;
 
@@ -22,7 +18,12 @@ int main() {
     Hammer *equipedHammer = Brice.getTool<Hammer>();
     cout << Gray << "> Hammer have " << equipedHammer->getNumberOfUses() << " uses left" << ResetColor << endl;
 
-    cout << endl;
+    cout << endl << Gray << "Registering workers :" << ResetColor << endl;
+
+    bob.registerWorker(Brice);
+    childLabor.registerWorker(Brice);
+    childLabor.registerWorker(Antoine);
+    childLabor.registerWorker(Brice); // Should not register Brice again
 
     Antoine.equip(*equipedShovel); // Should not equip the shovel
     Shovel *equipedShovel2 = Antoine.getTool<Shovel>(); // Should return NULL
@@ -48,9 +49,9 @@ int main() {
 
     cout << endl << Gray << "Unregistering workers :" << ResetColor << endl;
 
-    workshop.unregisterWorker(Brice);
-    workshop.unregisterWorker(Antoine);
-    workshop.unregisterWorker(Brice); // Should not unregister Brice again
+    childLabor.unregisterWorker(Brice);
+    childLabor.unregisterWorker(Antoine);
+    childLabor.unregisterWorker(Brice); // Should not unregister Brice again
 
     cout << endl;
 }
