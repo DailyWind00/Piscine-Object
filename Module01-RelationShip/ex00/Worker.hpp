@@ -7,6 +7,8 @@
 #include <vector>
 #include "Tools.hpp"
 class Tool;
+template <typename ToolType>
+class Workshop;
 
 using namespace std;
 
@@ -22,11 +24,15 @@ typedef struct Statistic {
 } Statistic;
 
 class Worker {
+    template <typename ToolType>
+    friend class Workshop;
+
     private:
         string          name;
         Position        position;
         Statistic       statistic;
         vector<Tool *>  tool;
+        vector<void *>  workshops;
 
     public:
         Worker(const string &name, Position position, Statistic statistic);
@@ -34,7 +40,8 @@ class Worker {
 
         /// Public methods
 
-        void equip(Tool &tool);
+        void    equip(Tool &tool);
+        void    listWorkshops() const;
 
         // Work with the tools equipped, using the first correct tool 1 time if possible
         template <typename ToolType>

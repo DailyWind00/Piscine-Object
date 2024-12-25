@@ -1,4 +1,5 @@
 #include "Worker.hpp"
+#include "Workshop.hpp"
 
 //// Worker
 /// Constructor & Destructor
@@ -22,6 +23,23 @@ void Worker::equip(Tool &tool) {
     if (tool.assign(this)) {
         this->tool.push_back(&tool);
         cout << this->name << " equipped " << tool.getToolName() << endl;
+    }
+}
+
+// List the workshops where the worker is registered
+void Worker::listWorkshops() const {
+    cout << "Workshops for " << name << ":" << endl;
+
+    for (vector<void *>::const_iterator it = workshops.begin(); it != workshops.end(); ++it) {
+        void *workshopPtr = *it;
+
+        Workshop<Hammer> *curWorkshop = static_cast<Workshop<Hammer> *>(workshopPtr);
+        if (curWorkshop) {
+            cout << " - " << curWorkshop->getName() << " (" << curWorkshop->getToolName() << " Workshop)" << std::endl;
+            continue;
+        }
+
+        cout << " - Unknown Workshop" << endl;
     }
 }
 /// ---

@@ -18,18 +18,23 @@ int main() {
     Hammer *equipedHammer = Brice.getTool<Hammer>();
     cout << Gray << "> Hammer have " << equipedHammer->getNumberOfUses() << " uses left" << ResetColor << endl;
 
-    cout << endl << Gray << "Registering workers :" << ResetColor << endl;
-
-    bob.registerWorker(Brice);
-    childLabor.registerWorker(Brice);
-    childLabor.registerWorker(Antoine);
-    childLabor.registerWorker(Brice); // Should not register Brice again
-
     Antoine.equip(*equipedShovel); // Should not equip the shovel
     Shovel *equipedShovel2 = Antoine.getTool<Shovel>(); // Should return NULL
     if (equipedShovel2 == NULL)
         cout << Gray << "> Shovel hasn't been equipped" << ResetColor << endl;
     
+    cout << endl << Gray << "Registering workers :" << ResetColor << endl;
+
+    bob.registerWorker(Brice);
+    childLabor.registerWorker(Brice);
+    childLabor.registerWorker(Antoine); // Should not register Antoine because he doesn't have the right tool
+    childLabor.registerWorker(Brice); // Should not register Brice again
+
+    cout << endl;
+
+    Brice.listWorkshops();
+    Antoine.listWorkshops();
+
     cout << endl << Gray << "Working with tools :" << ResetColor << endl;
     
     for (int i = 0; i < 6; i++) {
@@ -52,6 +57,10 @@ int main() {
     childLabor.unregisterWorker(Brice);
     childLabor.unregisterWorker(Antoine);
     childLabor.unregisterWorker(Brice); // Should not unregister Brice again
+
+    cout << endl;
+
+    Brice.listWorkshops();
 
     cout << endl;
 }
