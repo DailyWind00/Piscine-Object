@@ -40,7 +40,6 @@ bool Shovel::use() {
     }
 
     if (this->numberOfUses > 0) {
-        cout << this->toolName << " used" << endl;
         this->numberOfUses--;
         return true;
     }
@@ -129,7 +128,6 @@ bool Hammer::use() {
     }
 
     if (this->numberOfUses > 0) {
-        cout << this->toolName << " used" << endl;
         this->numberOfUses--;
         return true;
     }

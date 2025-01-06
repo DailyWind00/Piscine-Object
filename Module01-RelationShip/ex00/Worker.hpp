@@ -54,11 +54,9 @@ class Worker {
             }
 
             if (useTool->use())
-                cout << this->name << " worked successfully" << endl;
-            else {
+                cout << this->name << " worked successfully (" << useTool->getToolName() << " have " << useTool->getNumberOfUses() << " use lefts)" << endl;
+            else
                 cout << this->name << " failed to work" << endl;
-                this->unequip<ToolType>();
-            }
         }
 
         // Unequip the tool from the worker if the worker is equipped
@@ -88,12 +86,13 @@ class Worker {
         const Position &getPosition() const;
         const Statistic &getStatistic() const;
 
-        // Return the first tool of the specified type
+        // Return the first tool not broken of the specified type
         template <typename ToolType>
         ToolType *getTool() const {
             for (uint i = 0; i < this->tool.size(); i++) {
-                if (dynamic_cast<ToolType*>(this->tool[i]) != NULL)
-                    return dynamic_cast<ToolType *>(this->tool[i]);
+				ToolType *currentTool = dynamic_cast<ToolType *>(this->tool[i]);
+                if (currentTool != NULL && currentTool->getNumberOfUses() > 0)
+                    return currentTool;
             }
             return NULL;
         }

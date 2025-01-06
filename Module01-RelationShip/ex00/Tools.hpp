@@ -13,7 +13,7 @@ typedef unsigned int uint;
 class Tool {
     protected:
         string  toolName;
-        uint    numberOfUses;
+        uint    numberOfUses; // 0 = broken, decreasing
         Worker  *currentWorker;
 
     public:

@@ -61,6 +61,15 @@ class Workshop {
             cout << this->name << " don't have " << worker.getName() << " registered" << endl;
         }
 
+		// Launch a day of work in the workshop
+		void executeWorkDay() {
+			cout << this->name << " (" << this->toolName << ") is starting a work day :" << endl;
+			for (vector<Worker *>::iterator it = this->workers.begin(); it != this->workers.end(); it++) {
+				cout << " - ";
+				(*it)->work<ToolType>();
+			}
+		}
+
         /// Getters
 
         // Return the workshop name

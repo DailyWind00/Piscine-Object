@@ -40,6 +40,12 @@ int main() {
     for (int i = 0; i < 6; i++) {
         Brice.work<Shovel>(); // Should work 5 times and fail the last time
     }
+
+	cout << endl;
+
+	for (int i = 0; i < 3; i++)
+		bob.executeWorkDay(); // Should work 2 times and fail the last time
+
     cout << endl;
 
     Antoine.work<Shovel>(); // Should not work
