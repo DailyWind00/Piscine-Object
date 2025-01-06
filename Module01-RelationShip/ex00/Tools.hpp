@@ -44,9 +44,7 @@ class Shovel : public Tool {
         const string           &getToolName() const;
         const uint             &getNumberOfUses() const;
         const Worker           *getCurrentWorker() const;
-        static const string     staticGetToolName() {
-            return Orange + "Shovel" + ResetColor;
-        }
+        static const string     staticGetToolName();
 };
 
 class Hammer : public Tool {
@@ -64,7 +62,5 @@ class Hammer : public Tool {
         const string           &getToolName() const;
         const uint             &getNumberOfUses() const;
         const Worker           *getCurrentWorker() const;
-        static const string     staticGetToolName() {
-            return Orange + "Hammer" + ResetColor;
-        }
+        static const string     staticGetToolName();
 };

@@ -78,6 +78,11 @@ const uint &Shovel::getNumberOfUses() const {
 const Worker *Shovel::getCurrentWorker() const {
     return this->currentWorker;
 }
+
+// Return the shovel name (static)
+const string Shovel::staticGetToolName() {
+    return Orange + "Shovel" + ResetColor;
+}
 /// ---
 //// ----
 
@@ -161,6 +166,11 @@ const uint &Hammer::getNumberOfUses() const {
 // Return the current worker
 const Worker *Hammer::getCurrentWorker() const {
     return this->currentWorker;
+}
+
+// Return the hammer name (static)
+const string Hammer::staticGetToolName() {
+    return Orange + "Hammer" + ResetColor;
 }
 /// ---
 //// ----
