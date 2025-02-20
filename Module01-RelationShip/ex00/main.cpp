@@ -13,13 +13,15 @@ int main() {
 
     Brice.equip(shovel);
     Brice.equip(hammer);
-    Shovel *equipedShovel = Brice.getTool<Shovel>();
+
+    Tool *equipedShovel = Brice.getTool<Shovel>();
     cout << LightGray << "> Shovel have " << equipedShovel->getNumberOfUses() << " uses left" << ResetColor << endl;
-    Hammer *equipedHammer = Brice.getTool<Hammer>();
+	
+    Tool *equipedHammer = Brice.getTool<Hammer>();
     cout << LightGray << "> Hammer have " << equipedHammer->getNumberOfUses() << " uses left" << ResetColor << endl;
 
     Antoine.equip(*equipedShovel); // Should not equip the shovel
-    Shovel *equipedShovel2 = Antoine.getTool<Shovel>(); // Should return NULL
+    Tool *equipedShovel2 = Antoine.getTool<Shovel>(); // Should return NULL
     if (equipedShovel2 == NULL)
         cout << LightGray << "> Shovel hasn't been equipped" << ResetColor << endl;
     
@@ -37,14 +39,13 @@ int main() {
 
     cout << endl << LightGray << "Working with tools :" << ResetColor << endl;
     
-    for (int i = 0; i < 6; i++) {
-        Brice.work<Shovel>(); // Should work 5 times and fail the last time
-    }
-
+    for (int i = 0; i < 6; i++)
+		Brice.work<Shovel>(); // Should work 5 times and fail the last time
+	
 	cout << endl;
 
 	for (int i = 0; i < 3; i++)
-		bob.executeWorkDay(); // Should work 2 times and fail the last time
+		bob.executeWorkDay(); // Should work 2 times and fail the last time, unregistering Brice from the workshop
 
     cout << endl;
 

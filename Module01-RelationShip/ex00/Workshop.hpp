@@ -50,10 +50,14 @@ class Workshop {
 
         // Unregister a worker from the workshop
         void unregisterWorker(Worker &worker) {
+
             for (vector<Worker *>::iterator it = this->workers.begin(); it != this->workers.end(); it++) {
+
                 if ((*it)->getName() == worker.getName()) {
+
                     worker.workshops.erase(find(worker.workshops.begin(), worker.workshops.end(), this));
                     this->workers.erase(it);
+
                     cout << this->name << " unregistered " << worker.getName() << endl;
                     return;
                 }
@@ -64,10 +68,18 @@ class Workshop {
 		// Launch a day of work in the workshop
 		void executeWorkDay() {
 			cout << this->name << " (" << this->toolName << ") is starting a work day :" << endl;
+			vector<Worker *> workersToRemove;
+
 			for (vector<Worker *>::iterator it = this->workers.begin(); it != this->workers.end(); it++) {
 				cout << " - ";
-				(*it)->work<ToolType>();
+				
+				if (!(*it)->work<ToolType>()) // Unregister a worker if he can't work
+					workersToRemove.push_back(*it);
 			}
+
+			// Unregister workers that can't work after for iterators
+			for (vector<Worker *>::iterator it = workersToRemove.begin(); it != workersToRemove.end(); it++)
+				unregisterWorker(**it);
 		}
 
         /// Getters

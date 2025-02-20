@@ -44,19 +44,24 @@ class Worker {
         void    listWorkshops() const;
 
         // Work with the tools equipped, using the first correct tool 1 time if possible
+		// Return true if successfull, false otherwise
         template <typename ToolType>
-        void work() {
+        bool work() {
             Tool *useTool = this->getTool<ToolType>();
 
             if (!useTool) {
                 cout << this->name << " don't have the tools to work with" << endl;
-                return;
+                return false;
             }
 
             if (useTool->use())
                 cout << this->name << " worked successfully (" << useTool->getToolName() << " have " << useTool->getNumberOfUses() << " use lefts)" << endl;
-            else
+            else {
                 cout << this->name << " failed to work" << endl;
+				return false;
+			}
+
+			return true;
         }
 
         // Unequip the tool from the worker if the worker is equipped
