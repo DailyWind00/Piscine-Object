@@ -1,8 +1,9 @@
 #include "Worker.hpp"
 #include "Workshop.hpp"
 
-//// Worker
-/// Constructor & Destructor
+#pragma region Worker
+# pragma region Constructor & Destructor
+
 Worker::Worker(const string &name, Position position, Statistic statistic) {
     this->name = Green + name + ResetColor;
     this->position = position;
@@ -14,9 +15,10 @@ Worker::Worker(const string &name, Position position, Statistic statistic) {
 Worker::~Worker() {
     std::cout << "Worker Destructor : " << this->name << std::endl;
 }
-/// ---
 
-/// Public methods
+# pragma endregion Constructor & Destructor
+
+# pragma region Public methods
 
 // Equip the tool to the worker
 void Worker::equip(Tool &tool) {
@@ -42,9 +44,10 @@ void Worker::listWorkshops() const {
         cout << " - Unknown Workshop" << endl;
     }
 }
-/// ---
 
-/// Getters
+# pragma endregion Public methods
+
+# pragma region Getters
 
 // Return the worker name
 const string &Worker::getName() const {
@@ -60,5 +63,6 @@ const Position &Worker::getPosition() const {
 const Statistic &Worker::getStatistic() const {
     return this->statistic;
 }
-/// ---
-//// ----
+
+# pragma endregion Getters
+# pragma endregion Worker

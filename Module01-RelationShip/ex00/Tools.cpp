@@ -1,8 +1,9 @@
 #include "Tools.hpp"
 #include "Worker.hpp"
 
-//// Shovel
-/// Constructor & Destructor
+#pragma region Shovel
+# pragma region Constructor & Destructor
+
 Shovel::Shovel(uint numberOfUses) {
     this->toolName = Orange + "Shovel" + ResetColor;
     this->numberOfUses = numberOfUses;
@@ -14,15 +15,16 @@ Shovel::Shovel(uint numberOfUses) {
 Shovel::~Shovel() {
     cout << "Tool Destructor : " << this->toolName << endl;
 }
-/// ---
 
-/// Public methods
+# pragma endregion Constructor & Destructor
+
+# pragma region Public Methods
 
 // Assign the shovel to a worker
 // Return true if the shovel is assigned, false otherwise
 bool Shovel::assign(Worker *worker) {
     if (this->currentWorker != NULL) {
-        cout << this->toolName << " is already assigned" << endl;
+        cout << this->toolName << " can't be assigned to " << worker->getName() << " (already assigned to " << this->currentWorker->getName() << ")" << endl;
         return false;
     }
 
@@ -59,9 +61,12 @@ bool Shovel::remove() {
     cout << this->toolName << " removed" << endl;
     return true;
 }
-/// ---
 
-/// Getters
+# pragma endregion Public Methods
+
+
+
+# pragma region Getters
 
 // Return the shovel name
 const string &Shovel::getToolName() const {
@@ -82,15 +87,14 @@ const Worker *Shovel::getCurrentWorker() const {
 const string Shovel::staticGetToolName() {
     return Orange + "Shovel" + ResetColor;
 }
-/// ---
-//// ----
+
+# pragma endregion Getters
+#pragma endregion Shovel
 
 
+#pragma region Hammer
+# pragma region Constructor & Destructor
 
-
-
-//// Hammer
-/// Constructor & Destructor
 Hammer::Hammer(uint numberOfUses) {
     this->toolName = Orange + "Hammer" + ResetColor;
     this->numberOfUses = numberOfUses;
@@ -102,15 +106,16 @@ Hammer::Hammer(uint numberOfUses) {
 Hammer::~Hammer() {
     cout << "Tool Destructor : " << this->toolName << endl;
 }
-/// ---
 
-/// Public methods
+# pragma endregion Constructor & Destructor
+
+# pragma region Public methods
 
 // Assign the hammer to a worker
 // Return true if the hammer is assigned, false otherwise
 bool Hammer::assign(Worker *worker) {
     if (this->currentWorker != NULL) {
-        cout << this->toolName << " is already assigned" << endl;
+        cout << this->toolName << " can't be assigned to " << worker->getName() << " (already assigned to " << this->currentWorker->getName() << ")" << endl;
         return false;
     }
 
@@ -147,9 +152,10 @@ bool Hammer::remove() {
     cout << this->toolName << " removed" << endl;
     return true;
 }
-/// ---
 
-/// Getters
+# pragma endregion Public methods
+
+# pragma region Getters
 
 // Return the hammer name
 const string &Hammer::getToolName() const {
@@ -170,5 +176,7 @@ const Worker *Hammer::getCurrentWorker() const {
 const string Hammer::staticGetToolName() {
     return Orange + "Hammer" + ResetColor;
 }
-/// ---
+
+# pragma endregion Getters
+#pragma endregion Hammer
 //// ----
