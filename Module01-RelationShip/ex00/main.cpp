@@ -1,14 +1,13 @@
 #include "Workshop.hpp"
 
-// Do every unit test here
-int main() {
-    Workshop<Shovel> childLabor("Child labor workshop");
-    Workshop<Hammer> bob("Bob the builder's workshop");
-    Worker Brice("Brice", (Position){0, 0, 0}, (Statistic){1, 0});
-    Shovel shovel(5);
-    Worker Antoine("Antoine", (Position){0, 0, 0}, (Statistic){1, 0});
-    Hammer hammer(2);
+Workshop<Shovel> childLabor("Child labor workshop");
+Workshop<Hammer> bob("Bob the builder's workshop");
+Worker Brice("Brice", (Position){0, 0, 0}, (Statistic){1, 0});
+Worker Antoine("Antoine", (Position){0, 0, 0}, (Statistic){1, 0});
+Shovel shovel(5);
+Hammer hammer(2);
 
+static void EquipingTools() {
     cout << endl << LightGray << "Equiping tools :" << ResetColor << endl;
 
     Brice.equip(shovel);
@@ -20,11 +19,19 @@ int main() {
     Tool *equipedHammer = Brice.getTool<Hammer>();
     cout << LightGray << "> Hammer have " << equipedHammer->getNumberOfUses() << " uses left" << ResetColor << endl;
 
-    Antoine.equip(*equipedShovel); // Should not equip the shovel
-    Tool *equipedShovel2 = Antoine.getTool<Shovel>(); // Should return NULL
-    if (equipedShovel2 == NULL)
-        cout << LightGray << "> Shovel hasn't been equipped" << ResetColor << endl;
-    
+    Antoine.equip(*equipedShovel); // Should move the shovel to Antoine
+    Tool *equipedShovel2 = Brice.getTool<Shovel>(); // Should return NULL
+    if (equipedShovel2 == NULL) {
+        cout << LightGray << "> Brice lost his shovel" << ResetColor << endl;
+	}
+
+	Brice.equip(*equipedShovel); // Should remove the shovel to Brice
+	equipedShovel2 = Brice.getTool<Shovel>(); // Shouldn't return NULL
+    if (equipedShovel2 != NULL)
+        cout << LightGray << "> Brice got his shovel back" << ResetColor << endl;
+}
+
+static void RegisteringWorkers() {
     cout << endl << LightGray << "Registering workers :" << ResetColor << endl;
 
     bob.registerWorker(Brice);
@@ -36,7 +43,9 @@ int main() {
 
     Brice.listWorkshops();
     Antoine.listWorkshops();
+}
 
+static void WorkingWithTools() {
     cout << endl << LightGray << "Working with tools :" << ResetColor << endl;
     
     for (int i = 0; i < 6; i++)
@@ -52,13 +61,17 @@ int main() {
     Antoine.work<Shovel>(); // Should not work
 
     Antoine.equip(shovel); // Shovel has been removed but not deleted
+}
 
+static void UnequipingTools() {
     cout << endl << LightGray << "Unequiping tools :" << ResetColor << endl;
 
-    Antoine.unequip<Shovel>(); // Should unequip the shovel
-    Antoine.unequip<Shovel>(); // Should not unequip any tool
-    Brice.unequip<Shovel>(); // Should not unequip any tool
+    Antoine.unequip(shovel); // Should unequip the shovel
+    Antoine.unequip(shovel); // Should not unequip any tool
+    Brice.unequip(shovel); // Should not unequip any tool
+}
 
+static void UnregisteringWorkers() {
     cout << endl << LightGray << "Unregistering workers :" << ResetColor << endl;
 
     childLabor.unregisterWorker(Brice);
@@ -70,4 +83,12 @@ int main() {
     Brice.listWorkshops();
 
     cout << endl;
+}
+
+int main() {
+	EquipingTools();
+	RegisteringWorkers();
+	WorkingWithTools();
+	UnequipingTools();
+	UnregisteringWorkers();
 }
