@@ -14,24 +14,6 @@ Worker::Worker(const string &name, Position coordonnee, Statistic stat) {
 
 Worker::~Worker() {
     std::cout << "Worker Destructor : " << this->name << std::endl;
-
-	vector<Tool *> toolsToRemove = this->tool; // Copy the tools to avoid modifying the vector while iterating
-
-    // for (vector<Tool *>::iterator it = toolsToRemove.begin(); it != toolsToRemove.end(); ++it) {
-	// 	Tool *currentTool = *it;
-	// 	if (currentTool) {
-	// 		currentTool->remove();
-	// 		cout << this->name << " unequipped " << currentTool->getToolName() << endl;
-	// 	}
-    // }
-
-    for (vector<void *>::iterator it = workshops.begin(); it != workshops.end(); ++it) {
-        Workshop<Hammer> *workshop = static_cast<Workshop<Hammer> *>(*it);
-        if (workshop) {
-            workshop->unregisterWorker(*this);
-			cout << this->name << " unregistered from " << workshop->getName() << endl;
-		}
-    }
 }
 
 # pragma endregion Constructor & Destructor
