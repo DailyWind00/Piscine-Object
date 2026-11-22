@@ -59,7 +59,7 @@ void Worker::listWorkshops() const {
     for (vector<void *>::const_iterator it = workshops.begin(); it != workshops.end(); ++it) {
         void *workshopPtr = *it;
 
-        Workshop<Hammer> *curWorkshop = static_cast<Workshop<Hammer> *>(workshopPtr);
+        Workshop<Hammer> *curWorkshop = static_cast<Workshop<Hammer> *>(workshopPtr); // We can force-cast into Hammer because the internal tool name is still kept
         if (curWorkshop) {
             cout << " - " << curWorkshop->getName() << " (" << curWorkshop->getToolName() << " Workshop)" << std::endl;
             continue;
