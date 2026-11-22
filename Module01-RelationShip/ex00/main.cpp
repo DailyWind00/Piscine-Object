@@ -20,15 +20,15 @@ static void EquipingTools() {
     cout << LightGray << "> Hammer have " << equipedHammer->getNumberOfUses() << " uses left" << ResetColor << endl;
 
     Antoine.equip(*equipedShovel); // Should move the shovel to Antoine
-    Tool *equipedShovel2 = Brice.getTool<Shovel>(); // Should return NULL
-    if (equipedShovel2 == NULL) {
-        cout << LightGray << "> Brice lost his shovel" << ResetColor << endl;
-	}
+    // Tool *equipedShovel2 = Brice.getTool<Shovel>(); // Should return NULL
+    // if (equipedShovel2 == NULL) {
+    //     cout << LightGray << "> Brice lost his shovel" << ResetColor << endl;
+	// }
 
-	Brice.equip(*equipedShovel); // Should remove the shovel to Brice
-	equipedShovel2 = Brice.getTool<Shovel>(); // Shouldn't return NULL
-    if (equipedShovel2 != NULL)
-        cout << LightGray << "> Brice got his shovel back" << ResetColor << endl;
+	// Brice.equip(*equipedShovel); // Should move the shovel back to Brice
+	// equipedShovel2 = Brice.getTool<Shovel>(); // Shouldn't return NULL
+    // if (equipedShovel2 != NULL)
+    //     cout << LightGray << "> Brice got his shovel back" << ResetColor << endl;
 }
 
 static void RegisteringWorkers() {

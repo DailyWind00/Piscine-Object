@@ -42,6 +42,7 @@ class Worker {
 
         void    equip(Tool &tool);
         void    listWorkshops() const;
+		void	unequip(Tool& tool);
 
         // Work with the tools equipped, using the first correct tool 1 time if possible
 		// Return true if successfull, false otherwise
@@ -62,27 +63,6 @@ class Worker {
 			}
 
 			return true;
-        }
-
-        // Unequip the tool from the worker if the worker is equipped
-        template <typename ToolType>
-        void unequip() {
-            Tool *useTool = this->getTool<ToolType>();
-
-            if (!useTool) {
-                cout << this->name << " don't have any tool to unequip" << endl;
-                return;
-            }
-
-            cout << this->name << " unequipped a " << useTool->getToolName() << endl;
-
-            useTool->remove();
-            for (uint i = 0; i < this->tool.size(); i++) {
-                if (dynamic_cast<const ToolType*>(this->tool[i]) != NULL) {
-                    this->tool.erase(this->tool.begin() + i);
-                    break;
-                }  
-            }
         }
 
         /// Getters

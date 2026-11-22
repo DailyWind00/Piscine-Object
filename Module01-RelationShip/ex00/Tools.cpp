@@ -22,15 +22,16 @@ Shovel::~Shovel() {
 
 // Assign the shovel to a worker
 // Return true if the shovel is assigned, false otherwise
-bool Shovel::assign(Worker *worker) {
-    if (this->currentWorker != NULL) {
-        cout << this->toolName << " can't be assigned to " << worker->getName() << " (already assigned to " << this->currentWorker->getName() << ")" << endl;
-        return false;
-    }
+void Shovel::assign(Worker *worker) {
+	if (this->currentWorker == worker) {
+		cout << this->toolName << " is already assigned to " << this->currentWorker->getName() << endl;
+		return;
+	}
+    else
+		cout << this->toolName << " assigned on " << worker->getName() << endl;
 
     this->currentWorker = worker;
-    cout << this->toolName << " assigned on " << this->currentWorker->getName() << endl;
-    return true;
+    return;
 }
 
 // Use the shovel
@@ -57,8 +58,8 @@ bool Shovel::remove() {
         return false;
     }
 
-    this->currentWorker = NULL;
-    cout << this->toolName << " removed" << endl;
+    cout << this->toolName << " has been removed from " << this->currentWorker->getName() << endl;
+	this->currentWorker = NULL;
     return true;
 }
 
@@ -79,7 +80,7 @@ const uint &Shovel::getNumberOfUses() const {
 }
 
 // Return the current worker
-const Worker *Shovel::getCurrentWorker() const {
+Worker *Shovel::getCurrentWorker() const {
     return this->currentWorker;
 }
 
@@ -113,15 +114,20 @@ Hammer::~Hammer() {
 
 // Assign the hammer to a worker
 // Return true if the hammer is assigned, false otherwise
-bool Hammer::assign(Worker *worker) {
-    if (this->currentWorker != NULL) {
-        cout << this->toolName << " can't be assigned to " << worker->getName() << " (already assigned to " << this->currentWorker->getName() << ")" << endl;
-        return false;
-    }
+void Hammer::assign(Worker *worker) {
+	if (this->currentWorker == worker) {
+		cout << this->toolName << " is already assigned to " << this->currentWorker->getName() << endl;
+		return;
+	}
+    else if (this->currentWorker != NULL) {
+		this->currentWorker->unequip(*this);
+		cout << this->toolName << " assigned on " << worker->getName() << "(previously assigned to " << currentWorker->getName() << ")" << endl;
+	}
+    else
+		cout << this->toolName << " assigned on " << worker->getName() << endl;
 
     this->currentWorker = worker;
-    cout << this->toolName << " assigned on " << this->currentWorker->getName() << endl;
-    return true;
+    return;
 }
 
 // Use the hammer
@@ -148,8 +154,8 @@ bool Hammer::remove() {
         return false;
     }
 
-    this->currentWorker = NULL;
-    cout << this->toolName << " removed" << endl;
+    cout << this->toolName << " has been removed from " << this->currentWorker->getName() << endl;
+	this->currentWorker = NULL;
     return true;
 }
 
@@ -168,7 +174,7 @@ const uint &Hammer::getNumberOfUses() const {
 }
 
 // Return the current worker
-const Worker *Hammer::getCurrentWorker() const {
+Worker *Hammer::getCurrentWorker() const {
     return this->currentWorker;
 }
 
