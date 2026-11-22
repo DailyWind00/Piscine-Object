@@ -29,13 +29,13 @@ class Worker {
 
     private:
         string          name;
-        Position        position;
-        Statistic       statistic;
+        Position        coordonnee;
+        Statistic       stat;
         vector<Tool *>  tool;
         vector<void *>  workshops;
 
     public:
-        Worker(const string &name, Position position, Statistic statistic);
+        Worker(const string &name, Position coordonnee, Statistic stat);
         ~Worker();
 
         /// Public methods

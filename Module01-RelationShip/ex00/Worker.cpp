@@ -4,10 +4,10 @@
 #pragma region Worker
 # pragma region Constructor & Destructor
 
-Worker::Worker(const string &name, Position position, Statistic statistic) {
+Worker::Worker(const string &name, Position coordonnee, Statistic stat) {
     this->name = Green + name + ResetColor;
-    this->position = position;
-    this->statistic = statistic;
+    this->coordonnee = coordonnee;
+    this->stat = stat;
 
     std::cout << "Worker Constructor : " << this->name << std::endl;
 }
@@ -90,12 +90,12 @@ const string &Worker::getName() const {
 
 // Return the worker position
 const Position &Worker::getPosition() const {
-    return this->position;
+    return this->coordonnee;
 }
 
 // Return the worker statistic
 const Statistic &Worker::getStatistic() const {
-    return this->statistic;
+    return this->stat;
 }
 
 # pragma endregion Getters
